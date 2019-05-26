@@ -1,0 +1,100 @@
+//Loading Behaviour, Using this you can load new scenes seamlessly.
+sing System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+public class LoadingBeh : MonoBehaviour {
+	private Animator anim;
+	public static string ExtraLevelString;
+	public Text Extra_Text1;
+	private bool Loading=false;
+	// Use this for initialization
+	void Start () {
+
+		anim = this.GetComponent<Animator>();
+		Extra_Text1.text = ExtraLevelString;
+		Come();
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
+	public void LevelString_Set(string exf){
+		ExtraLevelString = exf;
+		Extra_Text1.text = ExtraLevelString;
+	}
+
+	public void GoToChain(){
+	
+		anim.Play("LoadingChain");
+
+	}
+	public void Come(){
+
+		anim.Play ("UnLoading");
+	}
+
+	public void GoTo(){
+		if(AnimeState()==false){
+		anim.Play("Loading");
+		}
+		
+	}
+	public bool AnimeStateChain(){
+
+		if (anim.GetCurrentAnimatorStateInfo(0).IsName("UnLoadingChain"))
+		{
+			return true;
+		}else{
+			return false;
+		}
+
+	}
+
+	public bool AnimeState(){
+		if (anim.GetCurrentAnimatorStateInfo(0).IsName("Loading") &&  anim.GetCurrentAnimatorStateInfo(0).normalizedTime>0.9f)
+		{
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public void GoToLevelFunct(string Level){
+
+
+		if(Loading==false){
+		StartCoroutine(GoToLevel(Level));
+		}
+	}
+	IEnumerator GoToLevel(string level){
+		GoTo();
+		Loading=true;
+		while (AnimeState()==false){
+			yield return null;
+		}
+
+		StartCoroutine(LoadAsyncScene(level));
+	
+	}
+
+	IEnumerator LoadAsyncScene(string level)
+	{
+		// The Application loads the Scene in the background as the current Scene runs.
+		// This is particularly good for creating loading screens.
+		// You could also load the Scene by using sceneBuildIndex. In this case Scene2 has
+		// a sceneBuildIndex of 1 as shown in Build Settings.
+		
+		AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(level);
+		
+		// Wait until the asynchronous scene fully loads
+		while (!asyncLoad.isDone)
+		{
+			yield return null;
+		}
+	}
+
+
+}
