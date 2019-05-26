@@ -1,0 +1,12 @@
+// Simple script that changes the offset of the texture to give the effect of waves.
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Water : MonoBehaviour {
+
+	void Update () {
+		float offset = Time.time * 0.04f;
+		this.GetComponent<MeshRenderer> ().material.SetTextureOffset ("_MainTex", new Vector2(offset, offset));
+	}
+}
