@@ -1,0 +1,11 @@
+//billboard any object (2d Plane for example) in your scene to look at the camera or player.
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Billboard : MonoBehaviour {
+
+	void Update () {
+		transform.LookAt(2* this.transform.position - GameObject.FindWithTag("Player").transform.position);
+	}
+}
