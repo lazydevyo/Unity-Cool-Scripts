@@ -1,0 +1,33 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Coin : MonoBehaviour {
+	public bool Rotate;
+	private bool small;
+	//Asign A sound you wanna trigger on coin pick.
+	public AudioClip OnHit;
+	// Use this for initialization
+
+	
+	// Update is called once per frame
+	void FixedUpdate () {
+		if (Rotate == true) {
+			this.transform.RotateAround(Vector3.down,Time.deltaTime*3);
+		}
+		if (small == true) {
+			this.gameObject.transform.localScale = Vector3.Lerp (this.gameObject.transform.localScale,Vector3.zero,Time.deltaTime*10);
+		}
+	}
+	void OnTriggerEnter(Collider Col){
+		if (Col.gameObject.tag == "Player") {
+			//if(Col.GetComponent<Collider> ().GetType () == typeof(BoxCollider)){
+			Camera.main.GetComponent<AudioSource>().PlayOneShot (OnHit);
+			small=true;
+			Camera.main.GetComponent<Manager>().Coins+=1;
+			Destroy (this.GetComponent<BoxCollider>());
+			//}
+
+		}
+	}
+}
