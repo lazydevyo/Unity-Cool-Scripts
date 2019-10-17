@@ -1,0 +1,1 @@
+This script has been used in SouzaSim Project to deform the terrain when you ride it with a motocycle e.g Dirt bike. You can modify it to use it for four wheel vehicle as well.
