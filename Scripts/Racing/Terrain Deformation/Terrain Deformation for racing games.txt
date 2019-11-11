@@ -1,1 +1,3 @@
-This script has been used in SouzaSim Project to deform the terrain when you ride it with a motocycle e.g Dirt bike. You can modify it to use it for four wheel vehicle as well.
+This script has been used in SouzaSim Project to deform the terrain when you ride it with a motocycle e.g Dirt bike. You can modify it to use it for four wheel vehicle as well. Make a terrain and then make a copy of it and smooth and lower slightly the ground then use the original as the mesh and the smoothed one as collision to get the effect. this effect can be seen in MXGP game series.
+
+Script link https://github.com/lazydevyo/Unity-Cool-Scripts/blob/master/Scripts/Racing/Terrain%20Deformation/TerrainDe.cs
