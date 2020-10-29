@@ -1,0 +1,4 @@
+float Speed = 1;
+float Amount = 1;
+float pi = 3.14f;
+pulse = ((Mathf.Sin((2*Time.time*Speed + 3) * pi/2) + 1) / 2)*Amount;
