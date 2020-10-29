@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TerrainDe : MonoBehaviour
+public class TerrainDeformation : MonoBehaviour
     {
         public bool Deform;
         public float deep;
